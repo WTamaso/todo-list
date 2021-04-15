@@ -23,7 +23,7 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <button class="btn btn-secondary active" onclick="showPage('list')">
+                    <button class="btn btn-secondary active" onclick="{showPage('list'); getTaskList();}">
                         <i class="bi-list-check"></i> Tasks
                     </button>
                 </div>
@@ -39,9 +39,11 @@
         <div class="col-8 content-block">
             <div id="list">
                 List
+                <div id="result"></div>
             </div>
             <div id="new" style="display: none">
                 New
+                <div id="result_form"></div>
             </div>
         </div>
     </div>

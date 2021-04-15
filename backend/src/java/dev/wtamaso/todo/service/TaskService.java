@@ -8,8 +8,13 @@ import org.hibernate.Session;
 
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
-import javax.persistence.criteria.*;
-import java.util.*;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class TaskService {
     public static Long create(TaskDTO dto) {
@@ -17,6 +22,7 @@ public class TaskService {
             Task task = new Task();
             TaskDTO.updateEntity(dto, task);
             task.setCreatedAt(new Date());
+            task.setStatus(TaskStatus.LISTED);
 
             Session s = SessionFactoryUtil.session();
 
@@ -122,7 +128,6 @@ public class TaskService {
     }
 
     public static boolean validate(TaskDTO dto) {
-        return dto.getTitle() != null && !dto.getTitle().trim().isEmpty() &&
-                dto.getStatus() != null;
+        return dto.getTitle() != null && !dto.getTitle().trim().isEmpty();
     }
 }

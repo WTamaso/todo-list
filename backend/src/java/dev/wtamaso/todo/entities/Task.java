@@ -20,10 +20,10 @@ public class Task implements Serializable {
     @Column(name = "status", nullable = false)
     private TaskStatus status;
 
-    @Column(name = "title", nullable = false)
+    @Column(name = "title", nullable = false, length = 100)
     private String title;
 
-    @Column(name = "description")
+    @Column(name = "description", length = 500)
     private String description;
 
     @Temporal(TemporalType.TIMESTAMP)

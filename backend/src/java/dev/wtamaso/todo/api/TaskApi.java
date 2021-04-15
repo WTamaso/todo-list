@@ -24,6 +24,7 @@ public class TaskApi extends HttpServlet {
         res.setStatus(code);
         res.setContentType("application/JSON");
         res.setCharacterEncoding("UTF-8");
+        res.setHeader("Access-Control-Allow-Origin", "*");
 
         PrintWriter out = res.getWriter();
 
@@ -46,6 +47,7 @@ public class TaskApi extends HttpServlet {
         res.setStatus(code);
         res.setContentType("application/JSON");
         res.setCharacterEncoding("UTF-8");
+        res.setHeader("Access-Control-Allow-Origin", "*");
 
         PrintWriter out = res.getWriter();
 
@@ -200,5 +202,11 @@ public class TaskApi extends HttpServlet {
             errorResponse("Failed to process request", e.getMessage(), HttpServletResponse.SC_INTERNAL_SERVER_ERROR, res);
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    protected void doOptions(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        res.setHeader("Access-Control-Allow-Origin", "*");
+        res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
     }
 }
